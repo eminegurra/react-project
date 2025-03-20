@@ -13,9 +13,9 @@ export const homeData = {
     title: "About Us",
     description: "This page provides information about this Next.js app.",
     team: [
-      { name: "Emine Gura", role: "Full Stack Developer", image: "emine.jpg" },
-      { name: "John Doe", role: "Frontend Engineer", image: "john.jpg" },
-      { name: "Jane Smith", role: "UI/UX Designer", image: "jane.jpg" },
+      { name: "Emine Gura", role: "Full Stack Developer", image: "person1.jpg" },
+      { name: "John Doe", role: "Frontend Engineer", image: "person2.jpg" },
+      { name: "Jane Smith", role: "UI/UX Designer", image: "person3.jpg" },
     ],
   };
   

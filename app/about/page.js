@@ -5,15 +5,15 @@ export default function About() {
   return (
     <div className="text-gray-800">
       {/* Hero Section */}
-      <div className="relative h-64 w-full">
+      <div className="relative w-full h-64">
         <Image
-          src="/about-banner.jpg" // Place an image in "public/about-banner.jpg"
+          src="/images/about-banner.jpg" // Place an image in "public/about-banner.jpg"
           alt="About Us Banner"
           layout="fill"
           objectFit="cover"
           className="opacity-80"
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50">
+        <div className="absolute inset-0 flex flex-col justify-center items-center bg-opacity-50">
           <h1 className="text-4xl font-bold text-white">About Us</h1>
           <p className="text-gray-300 mt-2">Who we are and what we do</p>
         </div>
