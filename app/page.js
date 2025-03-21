@@ -1,3 +1,6 @@
+"use client";
+
+import SelectedServiceWrapper from "./components/SelectedServiceWrapper";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +10,7 @@ export default function Home() {
       {/* Banner Image */}
       <div className="relative w-full h-64">
         <Image
-          src="/images/tech.jpeg" // Place in "public/banner.jpg"
+          src="/images/tech.jpeg"
           alt="Banner"
           layout="fill"
           objectFit="cover"
@@ -28,6 +31,11 @@ export default function Home() {
         >
           Learn More About Us
         </Link>
+      </section>
+
+      {/* Services Section */}
+      <section className="mt-10">
+        <SelectedServiceWrapper />
       </section>
     </div>
   );

@@ -1,14 +1,3 @@
-export const homeData = {
-    title: "Welcome to My Next.js App",
-    description: "This is a simple example demonstrating Next.js App Router.",
-    features: [
-      "Fast navigation with Next.js",
-      "Server-side rendering (SSR)",
-      "Automatic code splitting",
-      "Static & dynamic pages",
-    ],
-  };
-  
   export const aboutData = {
     title: "About Us",
     description: "This page provides information about this Next.js app.",
