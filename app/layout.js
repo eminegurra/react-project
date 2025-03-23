@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"} transition-all`}>
+      <body>
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main className="max-w-6xl mx-auto mt-6">{children}</main>
       </body>
