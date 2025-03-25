@@ -1,9 +1,8 @@
 import React from 'react'
 
-export default function ActionButton({ onAction, children, buttonRef }) {
+export default function ActionButton({ onAction, children }) {
     return (
       <button
-        ref={buttonRef}
         onClick={(e) => {
           e.stopPropagation(); // Prevent Panel's click
           onAction(); // Call the passed custom action
