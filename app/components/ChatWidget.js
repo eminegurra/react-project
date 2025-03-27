@@ -1,13 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
+import { useChat } from "../context/ChatContext";
 
 export default function ChatWidget() {
+  const {
+    isOpen,
+    setIsOpen,
+    messages,
+    setMessages,
+    input,
+    setInput,
+    isBotTyping,
+    setIsBotTyping,
+  } = useChat();
+
   const [isMounted, setIsMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [isBotTyping, setIsBotTyping] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -60,6 +69,7 @@ export default function ChatWidget() {
 
   return (
     <div>
+      {/* Chat toggle button */}
       {!isOpen && (
         <button
           onClick={toggleChat}
@@ -70,6 +80,7 @@ export default function ChatWidget() {
         </button>
       )}
 
+      {/* Chat window */}
       {isOpen && (
         <div className="fixed bottom-20 right-4 w-[350px] h-[500px] bg-white shadow-xl rounded-lg overflow-hidden border border-gray-300 flex flex-col">
           {/* Header */}
@@ -85,13 +96,19 @@ export default function ChatWidget() {
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`w-full flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
+                className={`w-full flex ${
+                  msg.type === "user" ? "justify-end" : "justify-start"
+                }`}
               >
                 <div
                   className={`
                     inline-block px-3 py-2 rounded-lg text-sm
                     max-w-[80%] break-words
-                    ${msg.type === "user" ? "bg-blue-100 text-right" : "bg-gray-100 text-left"}
+                    ${
+                      msg.type === "user"
+                        ? "bg-blue-100 text-right"
+                        : "bg-gray-100 text-left"
+                    }
                     hover:bg-opacity-90 transition
                   `}
                 >
@@ -100,7 +117,6 @@ export default function ChatWidget() {
               </div>
             ))}
 
-            {/* Typing indicator */}
             {isBotTyping && (
               <div className="w-full flex justify-start">
                 <div className="inline-block px-3 py-2 rounded-lg bg-gray-100 text-left text-sm animate-pulse">
@@ -110,7 +126,7 @@ export default function ChatWidget() {
             )}
           </div>
 
-          {/* Input field */}
+          {/* Input */}
           <div className="flex border-t p-2">
             <input
               type="text"
