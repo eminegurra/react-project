@@ -1,26 +1,49 @@
-// /app/api/chat/route.js (for App Router)
-// or /pages/api/chat.js (for Pages Router)
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { servicesData } from "../../data";
+
 
 export async function POST(req) {
-  const { message } = await req.json();
+  try {
+    const { message } = await req.json();
 
-  const apiKey = process.env.OPENAI_API_KEY;
+    const myservicesContext = servicesData
+      .map((s) => `${s.name}: ${s.description}`)
+      .join("\n");
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: message }]
-    })
-  });
+    const prompt = `
+      You are a helpful assistant. The following are services the company offers:
 
-  const data = await res.json();
-  const reply = data.choices?.[0]?.message?.content || "Sorry, something went wrong.";
+      ${myservicesContext}
 
-  return NextResponse.json({ reply });
+      Answer the user's question using the context above when possible.
+
+      User: ${message}
+      `;
+
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "gpt-4o",
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("❌ OpenAI Error:", errText);
+      return NextResponse.json({ reply: "OpenAI error" }, { status: 500 });
+    }
+
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || "No response.";
+
+    return NextResponse.json({ reply });
+  } catch (err) {
+    console.error("❌ Server Error:", err);
+    return NextResponse.json({ reply: "Oops! Something went wrong." }, { status: 500 });
+  }
 }

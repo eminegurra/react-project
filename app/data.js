@@ -29,5 +29,11 @@
       description: "Boost your website's ranking with our SEO services.",
       image: "/service3.jpg", // Place in public folder
     },
+    {
+      id: 4,
+      name: "Emine Consultation",
+      description: "Talk with Emine on google meet.",
+      image: "/service3.jpg", // Place in public folder
+    },
   ];
   
