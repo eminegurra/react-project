@@ -34,7 +34,7 @@ export async function POST(req) {
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("❌ OpenAI Error:", errText);
+      console.error("OpenAI Error:", errText);
       return NextResponse.json({ reply: "OpenAI error" }, { status: 500 });
     }
 
@@ -43,7 +43,7 @@ export async function POST(req) {
 
     return NextResponse.json({ reply });
   } catch (err) {
-    console.error("❌ Server Error:", err);
+    console.error("Server Error:", err);
     return NextResponse.json({ reply: "Oops! Something went wrong." }, { status: 500 });
   }
 }

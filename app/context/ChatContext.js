@@ -8,10 +8,7 @@ export function ChatProvider({ children }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isBotTyping, setIsBotTyping] = useState(false);
-
-  useEffect(() => {
-    // You can persist messages or open state here if needed
-  }, []);
+  const [useGPT, setUseGPT] = useState(true); 
 
   return (
     <ChatContext.Provider
@@ -24,6 +21,8 @@ export function ChatProvider({ children }) {
         setInput,
         isBotTyping,
         setIsBotTyping,
+        useGPT,
+        setUseGPT, 
       }}
     >
       {children}
